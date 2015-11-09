@@ -10,7 +10,7 @@ import com.wyverngame.rmi.api.response.BattleRanksResponse;
 public final class GetBattleRanksMethod extends Method<BattleRanksResponse> {
 	@Override
 	public BattleRanksResponse process(RMIClient client, Request request) throws RemoteException {
-		int limit = Integer.parseInt(request.getOrDefault("limit", Integer.toString(Integer.MAX_VALUE)));
+		int limit = Integer.parseInt(request.getOrDefault("limit", Integer.toString(10)));
 		Map<String, Integer> ranks = client.getWebInterface().getBattleRanks(limit);
 		return new BattleRanksResponse(ranks);
 	}
