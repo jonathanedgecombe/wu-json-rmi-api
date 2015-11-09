@@ -1,0 +1,7 @@
+config.json
+bin
+target
+.*
+*.sw*
+*~
+!.gitignore

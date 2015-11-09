@@ -1,0 +1,7 @@
+{
+	"rmiHost": "127.0.0.1",
+	"rmiPort": 7220,
+	"rmiPassword": "******",
+	"apiPort": 8080,
+	"apiPassword": ""
+}
