@@ -20,12 +20,12 @@ public final class GetInventoryMethod extends Method<InventoryResponse> {
 	public InventoryResponse process(RMIClient client, Request request) throws RemoteException {
 		long playerId = Long.parseLong(request.get("id"));
 		boolean detailed = Boolean.parseBoolean(request.getOrDefault("detailed", "false"));
-		Map<String, String> inventory = client.getWebInterface().getInventory(playerId);
+		Map<String, String> inventory = client.getWebInterface().getInventory(client.getPassword(), playerId);
 		List<Item> items = new ArrayList<>();
 
 		for (Entry<String, String> entry : inventory.entrySet()) {
 			if (detailed) {
-				Map<String, ?> details = client.getWebInterface().getItemSummary(Long.parseLong(entry.getKey()));
+				Map<String, ?> details = client.getWebInterface().getItemSummary(client.getPassword(), Long.parseLong(entry.getKey()));
 
 				Long owner = (Long) details.get("Owner");
 				if (owner == null) {

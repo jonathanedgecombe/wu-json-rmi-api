@@ -11,7 +11,7 @@ public final class GetFriendsMethod extends Method<FriendsResponse> {
 	@Override
 	public FriendsResponse process(RMIClient client, Request request) throws RemoteException {
 		long playerId = Long.parseLong(request.get("id"));
-		Map<String, Long> friends = client.getWebInterface().getFriends(playerId);
+		Map<String, Long> friends = client.getWebInterface().getFriends(client.getPassword(), playerId);
 		return new FriendsResponse(friends);
 	}
 }

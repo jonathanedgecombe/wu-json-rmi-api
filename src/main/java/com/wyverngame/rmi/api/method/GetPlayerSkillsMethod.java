@@ -11,7 +11,7 @@ public final class GetPlayerSkillsMethod extends Method<SkillsResponse> {
 	@Override
 	public SkillsResponse process(RMIClient client, Request request) throws RemoteException {
 		long playerId = Long.parseLong(request.get("id"));
-		Map<String, Float> skills = client.getWebInterface().getSkills(playerId);
+		Map<String, Float> skills = client.getWebInterface().getSkills(client.getPassword(), playerId);
 		return new SkillsResponse(skills);
 	}
 }

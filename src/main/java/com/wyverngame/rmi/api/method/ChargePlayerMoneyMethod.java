@@ -11,7 +11,7 @@ public final class ChargePlayerMoneyMethod extends Method<PlayerNewMoneyResponse
 	public PlayerNewMoneyResponse process(RMIClient client, Request request) throws RemoteException {
 		String playerName = request.get("name");
 		long amount = Long.parseLong(request.get("amount"));
-		long newAmount = client.getWebInterface().chargeMoney(playerName, amount);
+		long newAmount = client.getWebInterface().chargeMoney(client.getPassword(), playerName, amount);
 		return new PlayerNewMoneyResponse(newAmount >= 0, newAmount);
 	}
 }

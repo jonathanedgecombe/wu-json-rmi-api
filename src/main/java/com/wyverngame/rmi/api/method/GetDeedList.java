@@ -15,14 +15,14 @@ import com.wyverngame.rmi.api.response.model.DetailedDeed;
 public final class GetDeedList extends Method<DeedListResponse<? extends Deed>> {
 	@Override
 	public DeedListResponse<? extends Deed> process(RMIClient client, Request request) throws RemoteException {
-		Map<Integer, String> deeds = client.getWebInterface().getDeeds();
+		Map<Integer, String> deeds = client.getWebInterface().getDeeds(client.getPassword());
 		boolean detailed = Boolean.parseBoolean(request.getOrDefault("detailed", "false"));
 
 		if (detailed) {
 			List<DetailedDeed> list = new ArrayList<>();
 
 			for (Entry<Integer, String> entry : deeds.entrySet()) {
-				Map<String, ?> details = client.getWebInterface().getDeedSummary(entry.getKey());
+				Map<String, ?> details = client.getWebInterface().getDeedSummary(client.getPassword(), entry.getKey());
 
 				Integer guards = (Integer) details.get("guards");
 				if (guards == null) {

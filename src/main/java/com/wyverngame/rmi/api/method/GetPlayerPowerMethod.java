@@ -10,7 +10,7 @@ public final class GetPlayerPowerMethod extends Method<PlayerPowerResponse> {
 	@Override
 	public PlayerPowerResponse process(RMIClient client, Request request) throws RemoteException {
 		long playerId = Long.parseLong(request.get("id"));
-		int power = client.getWebInterface().getPower(playerId);
+		int power = client.getWebInterface().getPower(client.getPassword(), playerId);
 		return new PlayerPowerResponse(power);
 	}
 }

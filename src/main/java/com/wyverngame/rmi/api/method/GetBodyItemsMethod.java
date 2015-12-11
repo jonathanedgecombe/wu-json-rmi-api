@@ -15,13 +15,13 @@ public final class GetBodyItemsMethod extends Method<BodyItemsResponse> {
 	@Override
 	public BodyItemsResponse process(RMIClient client, Request request) throws RemoteException {
 		long playerId = Long.parseLong(request.get("id"));
-		Map<Long, Long> bodyItems = client.getWebInterface().getBodyItems(playerId);
+		Map<Long, Long> bodyItems = client.getWebInterface().getBodyItems(client.getPassword(), playerId);
 		List<ContainedItem<DetailedItem>> items = new ArrayList<>();
 
 		for (Entry<Long, Long> entry : bodyItems.entrySet()) {
 			long id = entry.getKey();
 			long parent = entry.getValue();
-			Map<String, ?> details = client.getWebInterface().getItemSummary(id);
+			Map<String, ?> details = client.getWebInterface().getItemSummary(client.getPassword(), id);
 
 			Long owner = (Long) details.get("Owner");
 			if (owner == null) {

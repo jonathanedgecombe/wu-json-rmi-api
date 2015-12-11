@@ -10,7 +10,7 @@ public final class BroadcastMessageMethod extends Method<SuccessResponse> {
 	@Override
 	public SuccessResponse process(RMIClient client, Request request) throws RemoteException {
 		String message = request.get("message");
-		client.getWebInterface().broadcastMessage(message);
+		client.getWebInterface().broadcastMessage(client.getPassword(), message);
 		return new SuccessResponse(true);
 	}
 }

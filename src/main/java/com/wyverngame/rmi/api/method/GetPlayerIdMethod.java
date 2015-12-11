@@ -10,7 +10,7 @@ public final class GetPlayerIdMethod extends Method<PlayerIdResponse> {
 	@Override
 	public PlayerIdResponse process(RMIClient client, Request request) throws RemoteException {
 		String playerName = request.get("name");
-		long playerId = client.getWebInterface().getPlayerId(playerName);
+		long playerId = client.getWebInterface().getPlayerId(client.getPassword(), playerName);
 		return new PlayerIdResponse(playerId);
 	}
 }

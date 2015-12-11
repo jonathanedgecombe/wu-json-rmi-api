@@ -9,7 +9,7 @@ import com.wyverngame.rmi.api.response.PlayerCountResponse;
 public final class GetPremiumPlayerCount extends Method<PlayerCountResponse> {
 	@Override
 	public PlayerCountResponse process(RMIClient client, Request request) throws RemoteException {
-		int playerCount = client.getWebInterface().getPremiumPlayerCount();
+		int playerCount = client.getWebInterface().getPremiumPlayerCount(client.getPassword());
 		return new PlayerCountResponse(playerCount);
 	}
 }

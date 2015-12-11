@@ -9,7 +9,7 @@ import com.wyverngame.rmi.api.response.MessageResponse;
 public final class GetTestMessageMethod extends Method<MessageResponse> {
 	@Override
 	public MessageResponse process(RMIClient client, Request request) throws RemoteException {
-		String message = client.getWebInterface().getTestMessage();
+		String message = client.getWebInterface().getTestMessage(client.getPassword());
 		return new MessageResponse(message);
 	}
 }

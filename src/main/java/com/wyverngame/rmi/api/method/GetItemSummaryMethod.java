@@ -12,7 +12,7 @@ public class GetItemSummaryMethod extends Method<ItemResponse<DetailedItem>> {
 	@Override
 	public ItemResponse<DetailedItem> process(RMIClient client, Request request) throws RemoteException {
 		long itemId = Long.parseLong(request.get("id"));
-		Map<String, ?> details = client.getWebInterface().getItemSummary(itemId);
+		Map<String, ?> details = client.getWebInterface().getItemSummary(client.getPassword(), itemId);
 
 		Long owner = (Long) details.get("Owner");
 		if (owner == null) {

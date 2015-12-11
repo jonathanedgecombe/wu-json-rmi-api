@@ -9,7 +9,7 @@ import com.wyverngame.rmi.api.response.StatusMessage;
 public final class GetServerStatusMethod extends Method<StatusMessage> {
 	@Override
 	public StatusMessage process(RMIClient client, Request request) throws RemoteException {
-		String status = client.getWebInterface().getServerStatus();
+		String status = client.getWebInterface().getServerStatus(client.getPassword());
 		return new StatusMessage(status);
 	}
 }
